@@ -2,6 +2,8 @@
 
 This sub-directory contains sample queries which can be used with the UGS Analytics Data Access tool out of the box or can be customized to suit your particular needs.
 
+## Table of Contents
+
 - [Data Access Tables](#data-access-tables)
   - [account_games](#account_games)
   - [account_users](#account_users)
