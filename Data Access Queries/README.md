@@ -27,7 +27,7 @@ This table lists all of the projects in your organisation with UGS Analytics ena
 
 ### account_users 
 
-This table lists all the users from your applications. For each user, it contains a variety of dimensions. Under the `metrics` column, a number of user metrics can be found in a JSON formant. The metrics include: when the player first recorded an event, when the player last recorded an event, the total time a player has played the game, the total number of events recorded by a player, etc...
+This table lists all the users from your applications. For each user, it contains a variety of dimensions. Under the `metrics` column, a number of user metrics can be found in a JSON formant. The metrics include: when the user first recorded an event, when the user last recorded an event, the total time a user has spent in the application, the total number of events recorded by a user, etc...
 
 ### account_events 
 
