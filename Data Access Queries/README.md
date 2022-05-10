@@ -2,6 +2,19 @@
 
 This sub-directory contains sample queries which can be used with the UGS Analytics Data Access tool out of the box or can be customized to suit your particular needs.
 
+- [Data Access Tables](#data-access-tables)
+  - [account_games](#account_games)
+  - [account_users](#account_users)
+  - [account_events](#account_events)
+  - [account_event_json_keys](#account_event_json_keys)
+  - [account_fact_event_type_users_day](#account_fact_event_type_users_day)
+  - [account_fact_mission_users_day](#account_fact_mission_users_day)
+  - [account_fact_product_users_day](#account_fact_product_users_day)
+  - [account_fact_user_sessions_day](#account_fact_user_sessions_day)
+  - [account_fact_wau_users](#account_fact_wau_users)
+  - [account_fact_mau_users](#account_fact_mau_users)
+- [Queries](#queries)
+
 ## Data Access Tables
 
 Within the data share provided through Data Access, you have access to a number of tables.
