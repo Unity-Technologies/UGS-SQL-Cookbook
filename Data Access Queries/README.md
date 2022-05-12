@@ -70,3 +70,29 @@ This table lists all of the users who have played in the last 31 days and their 
 
 
 ## Queries
+
+For each query, remember to substitute in the relevant environment id for your application. This can be found by querying the `account_games` table.
+
+### Activity KPIs
+
+The queries under this category measure how active user have been across a variety of timespans and sessions.
+
+|Query|Description|
+|---|---|
+|Avg Session Length By Session Number|Returns the average session length in minutes, grouped by session number|
+|D28 Churn Vs D28 Rolling Retention|Returns the percentage of players that have churned before Day 28 and the percentage that have been retained until Day 28 per start date|
+|Median and Average Session Lengths|Returns the median and average session length per day|
+|New Player Retention Matrix|Returns a matrix which displays how many players who started on a specific date have returned after a certain number of days since they first launched the application|
+|Retention Using Min Event Date|Returns D1, D7, D14 and D30 retention using the minimum event date. This prevents sessions which cross into a second day from counting towards D1 retention|
+
+### Revenue KPIs
+
+The queries under this category measure revenue related statistics, including both IAP Revenue and Ad Revenue. 
+
+### Mission Statistics
+
+The queries under this category measure statistics related to mission starts, completion, failiure and abandonment.
+
+### Advanced Queries
+
+The queries under this category use more advanced SQL techniques and follow a more generic format for you to customize for your own projects and analytics needs.
