@@ -5,8 +5,7 @@ WITH data AS (
         USER_ID,
         SUM(EVENT_JSON:msSinceLastEvent::INTEGER) AS sessionDurationMs,
         COUNT(*) AS eventCount
-   FROM account_events
-   WHERE ENVIRONMENT_ID = [YOUR TARGET ENVIRONMENT]
+   FROM EVENTS
    GROUP BY sessionID, USER_ID
 ),
 

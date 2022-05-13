@@ -7,10 +7,9 @@ WITH sessions AS (
         EVENT_NAME, 
         EVENT_JSON:msSinceLastEvent::INTEGER as msSinceLastEvent,
         CONDITIONAL_CHANGE_EVENT(EVENT_JSON:sessionID) OVER (PARTITION BY USER_ID ORDER BY EVENT_ID) + 1 AS sessionCounter 
-    FROM account_events
+    FROM EVENTS
     WHERE EVENT_JSON:sessionID IS NOT NULL 
     AND EVENT_JSON:msSinceLastEvent IS NOT NULL
-    AND ENVIRONMENT_ID = [YOUR TARGET ENVIRONMENT]
 ), 
 
 -- Aggregates session data
