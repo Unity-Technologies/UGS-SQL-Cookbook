@@ -82,6 +82,7 @@ The queries under this category measure how active user have been across a varie
 |D28 Churn Vs D28 Rolling Retention|Returns the percentage of players that have churned before Day 28 and the percentage that have been retained until Day 28 per start date|
 |Median and Average Session Lengths|Returns the median and average session length per day|
 |New Player Retention Matrix|Returns a matrix which displays how many players who started on a specific date have returned after a certain number of days since they first launched the application|
+|Retention by User Country|Returns D7 retentions for each country that your users come from|
 |Retention Using Min Event Date|Returns D1, D7, D14 and D30 retention using the minimum event date. This prevents sessions which cross into a second day from counting towards D1 retention|
 
 ### Revenue KPIs
