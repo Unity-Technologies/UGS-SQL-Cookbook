@@ -1,6 +1,6 @@
 # Data Access Queries
 
-This sub-directory contains sample queries which can be used with the UGS Analytics Data Access tool out of the box or can be customized to suit your particular needs.
+This directory contains sample queries which can be used with the UGS Analytics Data Access tool out of the box or can be customized to suit your particular needs.
 
 ## Table of Contents
 
@@ -31,7 +31,7 @@ This table lists all the users from your applications. For each user, it contain
 
 ### account_events 
 
-This table contains all the events received from your applications. Event specific parameters can be found in the `EVENT_JSON` column in a JSON format. As the parameters are stored as a JSON object, you will need to parse the content in order to query it. Examples of how to parse the content can be found in the sample queries included in this repository.
+This table contains all the events received from your applications. Event specific parameters can be found in the `EVENT_JSON` column as a JSON object. As the parameters are stored as a JSON object, you will need to parse the content in order to query it. Examples of how to parse the content can be found in the sample queries included in this repository.
 
 ### account_event_json_keys 
 
