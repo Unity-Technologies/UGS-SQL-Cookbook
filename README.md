@@ -25,7 +25,7 @@ UGS Analytics uses a Snowflake Data Warehouse, so all queries are written in Sno
 
 ### Prerequisites
 
-This cookbook assumes a basic understanding of SQL `SELECT` statements and a concrete knowledge of what data you are sending in to UGS Analytics through events.
+This cookbook assumes a basic understanding of SQL `SELECT` statements and a concrete knowledge of what data you are sending in to UGS Analytics through events. Note, many of the sample queries in this cookbook do make use of `WHERE` clauses, also known as Common Table Expressions (CTEs). More context regarding CTEs can be found under the [Best Practices section](#using-common-table-expressions).
 
 Naturally, to use these queries, you should have some data already populating in the for your game. If you intend to use the Data Access queries, you should have the feature enabled and a data share set up for your account.
 
@@ -63,7 +63,31 @@ Queries written for both the SQL Data Explorer and Data Access tools should be i
 
 There are a number of methods and good practices to writing SQL queries which will help you get the most out of your analytics data and optimize the performance of your queries. 
 
-**Query only the information you are interested in**
+### Using Common Table Expressions
+
+A Common Table Expression (CTE) is a temporary result set which can be referred to later on in your query. CTEs are principally used to perform more complex aggregation calculations on your data and are incredibly useful for improving the readability of your query. A CTE is also known as a `WITH` clause as the syntax begins with the keyword `WITH`. 
+
+In your query, a CTE will appear before your main `SELECT` statement and have the following format:
+
+``` sql
+WITH cteName AS (
+  SELECT ...
+  FROM table
+)
+```
+
+You can then retrieve data and perform further aggregation on it in your main `SELECT` statement:
+
+``` sql
+SELECT ...
+FROM cteName
+```
+
+You can even have multiple CTEs in a single query which each refer to each other.
+
+The samples within this Cookbook will provide examples of how you can use CTEs on your data.
+
+### Query only the information you are interested in
 
 When writing queries in SQL, you should only select the columns you are interested in and wish to retrieve information from. For the SQL Data Explorer and Data Access tools, there are two principal reasons for this. Firstly, only retrieving the information that you require will vastly improve query performance as less data will need retrieved from the database. 
 
@@ -89,7 +113,7 @@ SELECT EVENT_JSON:missionName::VARCHAR, EVENT_JSON:score::INTEGER
 FROM EVENTS
 ```
 
-**Filter your results**
+### Filter your results
 
 Most of the time, you will not need the details from every single event. By adding filtering options to your query using `WHERE` and `HAVING` clauses, you can improve the results retrieved by reducing the number of events you retrieve from the database. Additionally, this will allow you to refine your results and perform more specific queries.
 
@@ -122,7 +146,7 @@ HAVING COUNT(DISTINCT USER_ID) > 10
 
 > Many of the sample queries in this cookbook will limit the results to only include the events from either the last 7 days or last 30 days.
 
-**Filter your queries early**
+### Filter your queries early
 
 When using subqueries and `WITH` clauses, filter out the uneccessary data as soon as you can so that subsequent steps in the query have less data to search through.
 
