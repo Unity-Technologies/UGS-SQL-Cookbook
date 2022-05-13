@@ -25,13 +25,17 @@ Within the data share provided through Data Access, you have access to a number 
 
 This table lists all of the projects in your organisation with UGS Analytics enabled. There is a record for each environment in each project. From this table you can retrieve the environment_id or game_id which you can then use to query in other tables.
 
-### account_users 
-
-This table lists all the users from your applications. For each user, it contains a variety of dimensions. Under the `metrics` column, a number of user metrics can be found in a JSON formant. The metrics include: when the user first recorded an event, when the user last recorded an event, the total time a user has spent in the application, the total number of events recorded by a user, etc...
-
 ### account_events 
 
-This table contains all the events received from your applications. Event specific parameters can be found in the `EVENT_JSON` column as a JSON object. As the parameters are stored as a JSON object, you will need to parse the content in order to query it. Examples of how to parse the content can be found in the sample queries included in this repository.
+This table lists all of the events that have been sent in from your application. Event specific parameters can be found in the `EVENT_JSON` column as a JSON object. As the parameters are stored as a JSON object, you will need to parse the content in order to query it. Examples for parsing your parameters can be seen in the samples included in this repository.
+
+### account_users 
+
+This table lists all the users who have sent in an event in the past. For each user, the columns contain a variety of useful metrics. Under the `metrics` column, specifically, there are metrics which are calculated using SQL analytics functions.
+
+### account_fact_user_sessions_day
+
+This table has a record for each user session. Each record contains a variety of user level aggregate KPIs for that session. If any of the dimensions, excluding aggregate dimensions, recorded in this table change during a session (for example, AGE_GROUP or GENDER), a new record will be created for that session.
 
 ### account_event_json_keys 
 
@@ -39,34 +43,29 @@ This table contains all of the parameters in your projects and when they were or
 
 ### account_fact_event_type_users_day 
 
-This table lists all of the events a user has sent in one day and how many times each of those events have been sent in. If any user details change (such as the client version or user country) during that day, a new record will be created for each event even if it has been already recorded once before the change.
+This table list all of the events a user has recorded in one day and how many times they have sent in each of those events.
 
 ### account_fact_mission_users_day 
 
-This table lists how many times a user has started, completed, failed and abandoned missions in a day. If any user details change (such as the client version or user country) during that day, a new record will be created for each mission event even if it has been already recorded once before the change. This table will be empty if you do not have at least one of the following events implemented:
+This table lists how many times a user has started, completed, failed and abandoned missions in a day. This table will be empty if you do not have at least one of the following events implemented:
 
 - missionStarted
 - missionCompleted
 - missionFailed
 - missionAbandoned
 
-> Note: To use this table, the above events should contain a missionName parameter
+To use this table, the above events should contain a missionName parameter.
 
 ### account_fact_product_users_day
 
-This table lists the number of times a user has purchased a product in a day. If any user details change (such as the client version or user country) during that day, a new record will be created for each product even if it has been already recorded once before the change. This table will be empty if you do not have the standard transaction event implemented. The data is retrieved from the "productsReceived" parameter in that event.
-
-### account_fact_user_sessions_day
-
-This table lists the revenue in the smallest unit of the default currency, the number of events, missions activity, and the transactions split out per session. If something about the session changes, such as clientVersion or userCountry changes, then a new row will be created.
+This table lists the number of times a user has purchased a product in a day. This table will be empty if you do not have the standard transaction event implemented. The data is retrieved from the "productsReceived" parameter in that event.
 
 ### account_fact_wau_users
 
-This table lists all of the users who have played in the last 7 days and their relevant dimensions.
+This table lists all of the users that have sent in an event in the last 7 days. 
 
 ### account_fact_mau_users
 
-This table lists all of the users who have played in the last 31 days and their relevant dimensions.
-
+This table lists all of the users that have sent in an event in the last 30 days. 
 
 ## Queries
