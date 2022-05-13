@@ -1,0 +1,71 @@
+# Data Access Queries
+
+This directory contains sample queries which can be used with the UGS Analytics Data Access tool out of the box or can be customized to suit your particular needs.
+
+## Table of Contents
+
+- [Data Access Tables](#data-access-tables)
+  - [account_games](#account_games)
+  - [account_events](#account_events)
+  - [account_users](#account_users)
+  - [account_fact_user_sessions_day](#account_fact_user_sessions_day)
+  - [account_event_json_keys](#account_event_json_keys)
+  - [account_fact_event_type_users_day](#account_fact_event_type_users_day)
+  - [account_fact_mission_users_day](#account_fact_mission_users_day)
+  - [account_fact_product_users_day](#account_fact_product_users_day)
+  - [account_fact_wau_users](#account_fact_wau_users)
+  - [account_fact_mau_users](#account_fact_mau_users)
+- [Queries](#queries)
+
+## Data Access Tables
+
+Within the data share provided through Data Access, you have access to a number of tables.
+
+### account_games
+
+This table lists all of the projects in your organisation with UGS Analytics enabled. There is a record for each environment in each project. From this table you can retrieve the environment_id or game_id which you can then use to query in other tables.
+
+### account_events 
+
+This table lists all of the events that have been sent in from your application. Event specific parameters can be found in the `EVENT_JSON` column as a JSON object. As the parameters are stored as a JSON object, you will need to parse the content in order to query it. Examples for parsing your parameters can be seen in the samples included in this repository.
+
+### account_users 
+
+This table lists all the users who have sent in an event in the past. For each user, the columns contain a variety of useful metrics. Under the `metrics` column, specifically, there are metrics which are calculated using SQL analytics functions.
+
+### account_fact_user_sessions_day
+
+This table has a record for each user session. Each record contains a variety of user level aggregate KPIs for that session. If any of the dimensions, excluding aggregate dimensions, recorded in this table change during a session (for example, AGE_GROUP or GENDER), a new record will be created for that session.
+
+### account_event_json_keys 
+
+This table contains all of the parameters in your projects and when they were originally created.
+
+### account_fact_event_type_users_day 
+
+This table list all of the events a user has recorded in one day and how many times they have sent in each of those events.
+
+### account_fact_mission_users_day 
+
+This table lists how many times a user has started, completed, failed and abandoned missions in a day. This table will be empty if you do not have at least one of the following events implemented:
+
+- missionStarted
+- missionCompleted
+- missionFailed
+- missionAbandoned
+
+To use this table, the above events should contain a missionName parameter.
+
+### account_fact_product_users_day
+
+This table lists the number of times a user has purchased a product in a day. This table will be empty if you do not have the standard transaction event implemented. The data is retrieved from the "productsReceived" parameter in that event.
+
+### account_fact_wau_users
+
+This table lists all of the users that have sent in an event in the last 7 days. 
+
+### account_fact_mau_users
+
+This table lists all of the users that have sent in an event in the last 30 days. 
+
+## Queries
