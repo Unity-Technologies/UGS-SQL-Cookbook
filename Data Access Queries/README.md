@@ -97,7 +97,6 @@ The queries under this category measure revenue related statistics, including bo
 |First IAP Transactions|Returns the transactions users make when they first purchase an item in game and how much revenue has been generated from each action|
 |IAPs per Platform per Day|Returns the number of transactions and revenue for iOS and Android|
 
-
 ### Mission Statistics
 
 The queries under this category measure statistics related to mission starts, completion, failiure and abandonment.
@@ -110,3 +109,7 @@ The queries under this category measure statistics related to mission starts, co
 ### Advanced Queries
 
 The queries under this category use more advanced SQL techniques and follow a more generic format for you to customize for your own projects and analytics needs.
+
+|Query|Description|
+|---|---|
+|Concurrent Sessions in Time Slice|Returns the number of active sessions which occur within a certain timeslot|
