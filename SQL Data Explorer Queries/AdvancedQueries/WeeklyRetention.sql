@@ -19,7 +19,7 @@ user_windows AS (
             LAG(weekCommencing, 1) OVER (PARTITION BY USER_ID ORDER BY weekCommencing)) AS lastWeek, 
         firstWeek
     FROM user_dates
-  ORDER BY weekCommencing
+    ORDER BY weekCommencing
 ),
 
 -- Calculates churned players for the following week
@@ -28,18 +28,28 @@ churned_players AS (
         COUNT(DISTINCT USER_ID) AS churnedPlayers
     FROM user_windows
     WHERE COALESCE(nextWeek, 0) != 7
-    AND weekCommencing <= TRUNC(CURRENT_DATE, 'week')::DATE - 14 
+        AND weekCommencing <= TRUNC(CURRENT_DATE, 'week')::DATE - 14 
     GROUP BY weekCommencing
     ORDER BY weekCommencing
 ),
 
 -- Combines the user_window table and churned_players table for later aggregation
 combined_results AS (
-SELECT USER_ID, weekCommencing, NULL as churnedPlayers, nextWeek, lastWeek, firstWeek
-from user_windows
-union all
-SELECT NULL as USER_ID, weekCommencing, churnedPlayers, NULL as nextWeek, NULL as lastWeek, NULL as firstWeek
-from churned_players
+    SELECT USER_ID, 
+        weekCommencing, 
+        NULL as churnedPlayers, 
+        nextWeek, 
+        lastWeek, 
+        firstWeek
+    FROM user_windows
+    UNION ALL
+    SELECT NULL as USER_ID, 
+        weekCommencing, 
+        churnedPlayers, 
+        NULL as nextWeek, 
+        NULL as lastWeek, 
+        NULL as firstWeek
+    FROM churned_players
 )
 
 -- Aggregates values in combined results

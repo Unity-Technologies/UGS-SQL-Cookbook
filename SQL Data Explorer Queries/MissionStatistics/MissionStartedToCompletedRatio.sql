@@ -2,10 +2,10 @@ WITH data AS (
     SELECT USER_ID,
           EVENT_JSON:missionName::STRING AS missionName,
           EVENT_NAME,
-          MAX(CASE WHEN EVENT_NAME = 'missionStarted' THEN 1 ELSE NULL END) OVER (PARTITION BY USER_ID, EVENT_JSON:missionName::STRING) AS missionStartedFlag,
-          MAX(CASE WHEN EVENT_NAME = 'missionCompleted' THEN 1 ELSE NULL END) OVER (PARTITION BY USER_ID, EVENT_JSON:missionName::STRING) AS missionCompletedFlag
+          MAX(CASE WHEN EVENT_NAME = 'missionStarted' THEN 1 ELSE NULL END) OVER (PARTITION BY USER_ID, missionName) AS missionStartedFlag,
+          MAX(CASE WHEN EVENT_NAME = 'missionCompleted' THEN 1 ELSE NULL END) OVER (PARTITION BY USER_ID, missionName) AS missionCompletedFlag
    FROM EVENTS
-   WHERE EVENT_JSON:missionName::STRING IS NOT NULL
+   WHERE missionName IS NOT NULL
 ), 
    
 nonCompletionData AS(
@@ -23,6 +23,6 @@ SELECT missionName AS "Mission Name",
        players AS "Num players started mission",
        completedPlayers AS "Num players completed mission",
        incompletePlayers AS "Num players started but not completed mission",
-       incompletePlayers/nullif(players, 0) AS Ratio --NullIF since players could theoretically be 0 and we rather divide by null
+       incompletePlayers/NULLIF(players, 0) AS Ratio --NullIF since players could theoretically be 0 and we rather divide by null
 FROM nonCompletionData
 ORDER BY missionName

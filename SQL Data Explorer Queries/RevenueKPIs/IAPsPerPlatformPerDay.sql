@@ -8,8 +8,8 @@ WITH data AS (
         EVENT_JSON:convertedProductAmount::INTEGER AS convertedProductAmount, 
         EVENT_JSON:revenueValidated::INTEGER AS revenueValidated
     FROM EVENTS
-    WHERE EVENT_NAME IN ( 'newPlayer', 'gameStarted', 'transaction') 
-    AND PLAYER_START_DATE > CURRENT_DATE - 31
+    WHERE EVENT_NAME IN ('newPlayer', 'gameStarted', 'transaction') 
+        AND PLAYER_START_DATE > CURRENT_DATE - 31
 )
 
 SELECT dayNumber, 

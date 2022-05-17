@@ -6,10 +6,11 @@ WITH sessions AS (
         EVENT_TIMESTAMP,
         EVENT_NAME, 
         EVENT_JSON:msSinceLastEvent::INTEGER as msSinceLastEvent,
+        -- Conditional change event pulls out the sessionID only when it has changed from the last occurance 
         CONDITIONAL_CHANGE_EVENT(EVENT_JSON:sessionID) OVER (PARTITION BY USER_ID ORDER BY EVENT_ID) + 1 AS sessionCounter 
     FROM EVENTS
-    WHERE EVENT_JSON:sessionID IS NOT NULL 
-    AND EVENT_JSON:msSinceLastEvent IS NOT NULL
+    WHERE sessionID IS NOT NULL 
+        AND msSinceLastEvent IS NOT NULL
 ), 
 
 -- Aggregates session data
@@ -32,4 +33,4 @@ SELECT
     ROUND(AVG(msSessionLength) / 60000, 2.0) :: FLOAT AS avgSessionLengthMinutes
 FROM session_aggregates 
 GROUP BY sessionCounter 
-ORDER BY sessionCounter; 
+ORDER BY sessionCounter

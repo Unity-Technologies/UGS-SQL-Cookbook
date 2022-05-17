@@ -1,13 +1,11 @@
 WITH spenders AS (
   SELECT USER_ID,
     metrics:totalRealCurrencySpent::INTEGER as totalRealCurrencySpent,
-    PERCENTILE_CONT(.01) WITHIN GROUP(ORDER BY metrics:totalRealCurrencySpent::INTEGER DESC) OVER (PARTITION BY 1) AS top1Percent
+    PERCENTILE_CONT(.01) WITHIN GROUP(ORDER BY totalRealCurrencySpent DESC) OVER (PARTITION BY 1) AS top1Percent
   FROM account_users
   WHERE totalRealCurrencySpent > 0 --only select spenders
-  AND ENVIRONMENT_ID = [YOUR TARGET ENVIRONMENT]
+    AND ENVIRONMENT_ID = [YOUR TARGET ENVIRONMENT]
 )
-
-
 
 SELECT COUNT(*) AS spenders,
   COUNT(CASE WHEN totalRealCurrencySpent >= top1Percent THEN 1 ELSE NULL END) AS top1PercentSpenders,
