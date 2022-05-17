@@ -113,3 +113,4 @@ The queries under this category use more advanced SQL techniques and follow a mo
 |Query|Description|
 |---|---|
 |Concurrent Sessions in Time Slice|Returns the number of active sessions which occur within a certain timeslot|
+|Weekly Retention|Returns number of players, retained from the previous week, churned from previous week, new this week and returning after at least a one week break per week|
