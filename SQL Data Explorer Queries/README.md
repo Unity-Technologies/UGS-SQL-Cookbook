@@ -84,4 +84,5 @@ The queries under this category use more advanced SQL techniques and follow a mo
 |Query|Description|
 |---|---|
 |Concurrent Sessions in Time Slice|Returns the number of active sessions which occur within a certain timeslot|
+|Top 1% Spenders Spend|Returns the number of spenders, the number of spenders in the top 1% of spenders, the minimum amount spent to be considered as part of the top 1% and the maximum amount spent|
 |Weekly Retention|Returns number of players, retained from the previous week, churned from previous week, new this week and returning after at least a one week break per week|
