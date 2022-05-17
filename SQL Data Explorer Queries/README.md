@@ -59,7 +59,11 @@ The queries under this category measure how active user have been across a varie
 
 ### Revenue KPIs
 
-The queries under this category measure revenue related statistics, including both IAP Revenue and Ad Revenue. 
+The queries under this category measure revenue related statistics, including both IAP Revenue and Ad Revenue.
+
+|Query|Description|
+|---|---|
+|ARPDAU|Returns the average revenue per user active on that particular day|
 
 ### Mission Statistics
 
