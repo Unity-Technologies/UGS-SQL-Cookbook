@@ -1,0 +1,5 @@
+SELECT DATE_PART('hour', EVENT_TIMESTAMP) AS localHour, 
+    COUNT(DISTINCT USER_ID) AS UniqueUsers
+FROM EVENTS
+GROUP BY localHour
+ORDER BY localHour
