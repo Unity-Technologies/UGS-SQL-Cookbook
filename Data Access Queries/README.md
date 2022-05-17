@@ -93,6 +93,7 @@ The queries under this category measure revenue related statistics, including bo
 |Query|Description|
 |---|---|
 |ARPDAU|Returns the average revenue per user active on that particular day|
+|First IAP Transactions|Returns the transactions users make when they first purchase an item in game and how much revenue has been generated from each action|
 
 
 ### Mission Statistics
