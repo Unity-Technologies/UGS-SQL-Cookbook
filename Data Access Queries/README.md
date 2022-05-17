@@ -101,6 +101,11 @@ The queries under this category measure revenue related statistics, including bo
 
 The queries under this category measure statistics related to mission starts, completion, failiure and abandonment.
 
+|Query|Description|
+|---|---|
+|Mission Completion Statistics|Returns how many player have started, successfully completed, failed or abandoned each mission|
+|Mission Started to Completed Ratio|Returns the ratio of how many players have started a mission versus how many player have actually completed that mission|
+
 ### Advanced Queries
 
 The queries under this category use more advanced SQL techniques and follow a more generic format for you to customize for your own projects and analytics needs.
