@@ -1,6 +1,6 @@
 -- Gets retention data and user country
 WITH retention_data AS (
-	SELECT user_country, 
+	SELECT USER_COUNTRY, 
 		COUNT(DISTINCT USER_ID) AS installs, 
 		COUNT(DISTINCT CASE WHEN EVENT_DATE - PLAYER_START_DATE = 7 THEN USER_ID END) AS retainedD7 
 	FROM account_fact_user_sessions_day

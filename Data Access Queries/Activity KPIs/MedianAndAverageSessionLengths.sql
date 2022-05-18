@@ -1,6 +1,6 @@
 --Gets session data
 WITH data AS (
-    SELECT MIN(EVENT_DATE) AS eventDate,
+    SELECT MIN(EVENT_JSON:eventDate::DATE) AS eventDate,
         EVENT_JSON:sessionID::STRING AS sessionID,
         USER_ID,
         SUM(EVENT_JSON:msSinceLastEvent::INTEGER) AS sessionDurationMs,

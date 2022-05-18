@@ -23,9 +23,9 @@ retention AS (
 
 --Produces retention percentages
 SELECT *,
-    ROUND(d1Retention/installs * 100, 2.0) as "D1%",
-    ROUND(d7Retention/installs * 100, 2.0) as "D7%",
-    ROUND(d14Retention/installs * 100, 2.0) as "D14%",
-    ROUND(d30Retention/installs * 100, 2.0) as "D30%"
+    ROUND(d1Retention/installs * 100, 2.0) AS "D1%",
+    ROUND(d7Retention/installs * 100, 2.0) AS "D7%",
+    ROUND(d14Retention/installs * 100, 2.0) AS "D14%",
+    ROUND(d30Retention/installs * 100, 2.0) AS "D30%"
 FROM retention
 ORDER BY PLAYER_START_DATE DESC
