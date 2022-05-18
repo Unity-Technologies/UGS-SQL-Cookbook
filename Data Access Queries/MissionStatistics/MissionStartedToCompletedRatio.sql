@@ -6,7 +6,7 @@ WITH data AS (
         MAX(CASE WHEN EVENT_NAME = 'missionCompleted' THEN 1 ELSE NULL END) OVER (PARTITION BY USER_ID, missionName) AS missionCompletedFlag
    FROM account_events
    WHERE missionName IS NOT NULL
-   AND ENVIRONMENT_ID = [YOUR TARGET ENVIRONMENT]
+    AND ENVIRONMENT_ID = [YOUR TARGET ENVIRONMENT]
 ), 
    
 nonCompletionData AS (

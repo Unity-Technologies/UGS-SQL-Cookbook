@@ -38,18 +38,18 @@ churned_players AS (
 combined_results AS (
     SELECT USER_ID, 
         weekCommencing, 
-        NULL as churnedPlayers, 
+        NULL AS churnedPlayers, 
         nextWeek, 
         lastWeek, 
         firstWeek
     FROM user_windows
     UNION ALL
-    SELECT NULL as USER_ID, 
+    SELECT NULL AS USER_ID, 
         weekCommencing, 
         churnedPlayers, 
-        NULL as nextWeek, 
-        NULL as lastWeek, 
-        NULL as firstWeek
+        NULL AS nextWeek, 
+        NULL AS lastWeek, 
+        NULL AS firstWeek
     FROM churned_players
 )
 
@@ -57,10 +57,10 @@ combined_results AS (
 SELECT 
     weekCommencing AS week, 
     SUM(CASE WHEN lastWeek = -7 THEN 1 ELSE 0 END) AS retainedPlayers,
-    SUM(CASE WHEN churnedPlayers is not null THEN churnedPlayers ELSE 0 END) as churnedPlayers, 
+    SUM(CASE WHEN churnedPlayers is not null THEN churnedPlayers ELSE 0 END) AS churnedPlayers, 
     SUM(CASE WHEN firstWeek = weekCommencing THEN 1 ELSE 0 END) AS newPlayers, 
     SUM(CASE WHEN lastWeek <= -14 THEN 1 ELSE 0 END) AS returningPlayers
 FROM combined_results
 WHERE weekCommencing <= TRUNC(CURRENT_DATE, 'week') - 7
-group by week
+GROUP BY week
 ORDER BY week

@@ -1,9 +1,9 @@
 --Gets minimum event dates for players
 WITH data AS ( 
-    SELECT MIN(EVENT_DATE) as EVENT_DATE,
+    SELECT MIN(EVENT_JSON:eventDate::DATE) AS eventDate,
         PLAYER_START_DATE,
         USER_ID,
-        DATEDIFF(DAY, PLAYER_START_DATE, MIN(EVENT_DATE)) AS n
+        DATEDIFF(DAY, PLAYER_START_DATE, MIN(eventDate)) AS n
     FROM account_fact_user_sessions_day
     WHERE DATEDIFF(DAY, PLAYER_START_DATE, CURRENT_DATE) < 36
         AND ENVIRONMENT_ID = [YOUR TARGET ENVIRONMENT]
@@ -24,9 +24,9 @@ retention AS (
 
 --Produces retention percentages
 SELECT *,
-    ROUND(d1Retention/installs * 100, 2.0) as "D1%",
-    ROUND(d7Retention/installs * 100, 2.0) as "D7%",
-    ROUND(d14Retention/installs * 100, 2.0) as "D14%",
-    ROUND(d30Retention/installs * 100, 2.0) as "D30%"
+    ROUND(d1Retention/installs * 100, 2.0) AS "D1%",
+    ROUND(d7Retention/installs * 100, 2.0) AS "D7%",
+    ROUND(d14Retention/installs * 100, 2.0) AS "D14%",
+    ROUND(d30Retention/installs * 100, 2.0) AS "D30%"
 FROM retention
 ORDER BY PLAYER_START_DATE DESC
