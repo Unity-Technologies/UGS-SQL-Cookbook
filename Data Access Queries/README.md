@@ -86,6 +86,7 @@ The queries under this category measure how active user have been across a varie
 |Players Per Hour In Local Timezone|Returns how many players have played at a certain time in their local timezone|
 |Retention by User Country|Returns D7 retentions for each country that your users come from|
 |Retention Using Min Event Date|Returns D1, D7, D14 and D30 retention using the minimum event date. This prevents sessions which cross into a second day from counting towards D1 retention|
+|Virtual Currency Spend Per Item|Returns the total virtual currency spent on each item available in the game|
 
 ### Revenue KPIs
 

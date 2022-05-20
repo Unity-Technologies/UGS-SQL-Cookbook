@@ -1,6 +1,6 @@
 WITH spenders AS (
   SELECT USER_ID,
-    metrics:totalRealCurrencySpent::INTEGER as totalRealCurrencySpent,
+    metrics:totalRealCurrencySpent::INTEGER AS totalRealCurrencySpent,
     PERCENTILE_CONT(.01) WITHIN GROUP(ORDER BY totalRealCurrencySpent DESC) OVER (PARTITION BY 1) AS top1Percent
   FROM account_users
   WHERE totalRealCurrencySpent > 0 --only select spenders
